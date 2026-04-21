@@ -156,20 +156,40 @@ app.get('/api/history', authenticateToken, async (req, res) => {
   const limit = parseInt(req.query.limit) || 20;
   try {
     console.log(`Fetching history for user ${userId}`);
+    
+    // First, check if the table exists
+    const [tableCheck] = await pool.execute(`
+      SELECT COUNT(*) as count FROM information_schema.tables 
+      WHERE table_schema = DATABASE() AND table_name = 'diagnoses'
+    `);
+    if (tableCheck[0].count === 0) {
+      console.error('❌ diagnoses table does not exist!');
+      return res.status(500).json({ success: false, error: 'diagnoses table missing' });
+    }
+
+    // Check if user_id column exists
+    const [columnCheck] = await pool.execute(`
+      SELECT COUNT(*) as count FROM information_schema.columns 
+      WHERE table_schema = DATABASE() AND table_name = 'diagnoses' AND column_name = 'user_id'
+    `);
+    if (columnCheck[0].count === 0) {
+      console.error('❌ user_id column missing from diagnoses table');
+      // Try to add it automatically
+      await pool.execute('ALTER TABLE diagnoses ADD COLUMN user_id INT');
+      console.log('✅ Added user_id column');
+    }
+
     const [rows] = await pool.execute(
       'SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ?',
       [userId, limit]
     );
     
-    // Log the raw data for debugging (remove after fixing)
     console.log(`Found ${rows.length} records`);
 
-    // Safely parse each row
     const parsedRows = rows.map(row => {
       let symptoms = row.symptoms;
       let results = row.results;
 
-      // If symptoms is a string, try to parse it; if it fails, fallback to empty array
       if (typeof symptoms === 'string') {
         try {
           symptoms = JSON.parse(symptoms);
@@ -178,12 +198,8 @@ app.get('/api/history', authenticateToken, async (req, res) => {
           symptoms = [];
         }
       }
-      // If symptoms is not an array, convert to array
-      if (!Array.isArray(symptoms)) {
-        symptoms = [];
-      }
+      if (!Array.isArray(symptoms)) symptoms = [];
 
-      // Same for results
       if (typeof results === 'string') {
         try {
           results = JSON.parse(results);
@@ -192,17 +208,21 @@ app.get('/api/history', authenticateToken, async (req, res) => {
           results = { diseases: [] };
         }
       }
-      if (!results || typeof results !== 'object') {
-        results = { diseases: [] };
-      }
+      if (!results || typeof results !== 'object') results = { diseases: [] };
 
       return { ...row, symptoms, results };
     });
 
     res.json({ success: true, history: parsedRows });
   } catch (error) {
-    console.error('Error in /history endpoint:', error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error('🔥 /history endpoint CRASH:', error);
+    console.error('Stack trace:', error.stack);
+    res.status(500).json({ 
+      success: false, 
+      error: error.message,
+      sqlMessage: error.sqlMessage,  // MySQL specific
+      code: error.code 
+    });
   }
 });
 
