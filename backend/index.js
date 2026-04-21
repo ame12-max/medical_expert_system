@@ -9,6 +9,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const execAsync = promisify(exec);
 const app = express();
