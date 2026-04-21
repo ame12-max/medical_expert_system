@@ -10,7 +10,7 @@ import { HistoryList } from './components/History/HistoryList';
 import { LoginForm } from './components/Auth/LoginForm';
 import { RegisterForm } from './components/Auth/RegisterForm';
 
-const API_BASE = '/api';
+const API_BASE = 'https://your-backend-name.onrender.com/api';
 
 function App() {
   const { user, login, register, logout } = useAuth();
