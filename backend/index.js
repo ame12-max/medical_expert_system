@@ -140,38 +140,72 @@ app.post('/api/diagnose', authenticateToken, async (req, res) => {
   }
 });
 
-// ✅ FIXED /history endpoint
 app.get('/api/history', authenticateToken, async (req, res) => {
+  console.log('=== /history request ===');
+  console.log('User from token:', req.user);
+  
   const userId = parseInt(req.user.id, 10);
+  console.log('Parsed userId:', userId, 'Type:', typeof userId);
+  
   if (isNaN(userId)) {
+    console.error('Invalid userId - NaN');
     return res.status(400).json({ success: false, error: 'Invalid user ID' });
   }
+
   let limit = parseInt(req.query.limit, 10);
   if (isNaN(limit) || limit < 1) limit = 20;
   if (limit > 100) limit = 100;
+  console.log('Limit:', limit);
 
   try {
+    // First, check if the table exists
+    const [tables] = await pool.query("SHOW TABLES LIKE 'diagnoses'");
+    console.log('Diagnoses table exists?', tables.length > 0);
+    
+    if (tables.length === 0) {
+      return res.status(500).json({ success: false, error: 'diagnoses table missing' });
+    }
+
+    // Check columns
+    const [columns] = await pool.query("SHOW COLUMNS FROM diagnoses");
+    console.log('Columns in diagnoses:', columns.map(c => c.Field));
+    
+    const hasUserId = columns.some(c => c.Field === 'user_id');
+    if (!hasUserId) {
+      console.error('user_id column missing!');
+      return res.status(500).json({ success: false, error: 'user_id column missing' });
+    }
+
+    // Execute the query
     const [rows] = await pool.execute(
       'SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ?',
       [userId, limit]
     );
+    console.log(`Found ${rows.length} records`);
+
+    // Parse each row
     const parsedRows = rows.map(row => {
       let symptoms = row.symptoms;
       let results = row.results;
+
       if (typeof symptoms === 'string') {
-        try { symptoms = JSON.parse(symptoms); } catch { symptoms = []; }
+        try { symptoms = JSON.parse(symptoms); } catch (e) { symptoms = []; }
       }
       if (!Array.isArray(symptoms)) symptoms = [];
+
       if (typeof results === 'string') {
-        try { results = JSON.parse(results); } catch { results = { diseases: [] }; }
+        try { results = JSON.parse(results); } catch (e) { results = { diseases: [] }; }
       }
       if (!results || typeof results !== 'object') results = { diseases: [] };
+
       return { ...row, symptoms, results };
     });
+
     res.json({ success: true, history: parsedRows });
   } catch (error) {
-    console.error('History error:', error);
-    res.status(500).json({ success: false, error: error.message });
+    console.error('🔥 /history crash:', error);
+    console.error('Error stack:', error.stack);
+    res.status(500).json({ success: false, error: error.message, sql: error.sql });
   }
 });
 
