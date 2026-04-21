@@ -10,8 +10,7 @@ import { HistoryList } from './components/History/HistoryList';
 import { LoginForm } from './components/Auth/LoginForm';
 import { RegisterForm } from './components/Auth/RegisterForm';
 
-const API_BASE = import.meta.env.VITE_API_BASE || 'https://medical-expert-system-l4tn.onrender.com/api';
-
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 function App() {
   const { user, login, register, logout } = useAuth();
   const [authMode, setAuthMode] = useState('login');
