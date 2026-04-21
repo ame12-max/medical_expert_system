@@ -9,6 +9,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 
 const PORT = process.env.PORT || 5000;
 
@@ -141,34 +142,49 @@ app.post('/api/diagnose', authenticateToken, async (req, res) => {
   }
 });
 
-// ✅ FIXED /history endpoint
 app.get('/api/history', authenticateToken, async (req, res) => {
   const userId = parseInt(req.user.id, 10);
   if (isNaN(userId)) {
     return res.status(400).json({ success: false, error: 'Invalid user ID' });
   }
+
   let limit = parseInt(req.query.limit, 10);
   if (isNaN(limit) || limit < 1) limit = 20;
   if (limit > 100) limit = 100;
 
   try {
-    const [rows] = await pool.execute(
-      'SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ?',
-      [userId, limit]
-    );
+    // ✅ Embed limit directly (safe because we parsed it as integer)
+    const query = `SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ${limit}`;
+    const [rows] = await pool.execute(query, [userId]);
+
     const parsedRows = rows.map(row => {
+      // Handle symptoms: could be JSON array or comma-separated string
       let symptoms = row.symptoms;
-      let results = row.results;
       if (typeof symptoms === 'string') {
-        try { symptoms = JSON.parse(symptoms); } catch { symptoms = []; }
+        // Try to parse as JSON
+        try {
+          symptoms = JSON.parse(symptoms);
+        } catch {
+          // If it fails, split by comma (old format)
+          symptoms = symptoms.split(',').map(s => s.trim().replace(/^"|"$/g, ''));
+        }
       }
       if (!Array.isArray(symptoms)) symptoms = [];
+
+      // Handle results similarly
+      let results = row.results;
       if (typeof results === 'string') {
-        try { results = JSON.parse(results); } catch { results = { diseases: [] }; }
+        try {
+          results = JSON.parse(results);
+        } catch {
+          results = { diseases: [] };
+        }
       }
       if (!results || typeof results !== 'object') results = { diseases: [] };
+
       return { ...row, symptoms, results };
     });
+
     res.json({ success: true, history: parsedRows });
   } catch (error) {
     console.error('History error:', error);
