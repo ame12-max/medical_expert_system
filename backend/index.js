@@ -151,33 +151,38 @@ app.post('/api/diagnose', authenticateToken, async (req, res) => {
   }
 });
 
-app.get('/api/history', authenticateToken, async (req, res) => {
-  const userId = req.user.id;
+app.get('/api/history', async (req, res) => {
   const limit = parseInt(req.query.limit) || 20;
   try {
     const [rows] = await pool.execute(
-      'SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ?',
-      [userId, limit]
+      'SELECT id, symptoms, results, created_at FROM diagnoses ORDER BY created_at DESC LIMIT ?',
+      [limit]
     );
-    // Parse safely
-    const parsed = rows.map(row => ({
-      ...row,
-      symptoms: (() => {
-        if (Array.isArray(row.symptoms)) return row.symptoms;
-        if (typeof row.symptoms === 'string') {
-          try { return JSON.parse(row.symptoms); } catch { return row.symptoms.split(',').map(s => s.trim()); }
+    // Safely parse symptoms & results, handling both JSON and plain strings
+    const parsedRows = rows.map(row => {
+      let symptoms = row.symptoms;
+      let results = row.results;
+
+      // If symptoms is a string that looks like JSON, parse it
+      if (typeof symptoms === 'string') {
+        try {
+          symptoms = JSON.parse(symptoms);
+        } catch {
+          // If not JSON, assume it's comma-separated (e.g., "chills,sweating")
+          symptoms = symptoms.split(',').map(s => s.trim());
         }
-        return [];
-      })(),
-      results: (() => {
-        if (row.results && typeof row.results === 'object') return row.results;
-        if (typeof row.results === 'string') {
-          try { return JSON.parse(row.results); } catch { return { diseases: [] }; }
+      }
+      // Same for results
+      if (typeof results === 'string') {
+        try {
+          results = JSON.parse(results);
+        } catch {
+          results = { diseases: [] };
         }
-        return { diseases: [] };
-      })()
-    }));
-    res.json({ success: true, history: parsed });
+      }
+      return { ...row, symptoms, results };
+    });
+    res.json({ success: true, history: parsedRows });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
