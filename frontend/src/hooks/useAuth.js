@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 
+const API_BASE = import.meta.env.VITE_API_BASE || '/api';
+
 export const useAuth = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
@@ -23,23 +25,31 @@ export const useAuth = () => {
   }, [token]);
 
   const login = async (username, password) => {
-    const res = await axios.post('/api/login', { username, password });
-    if (res.data.success) {
-      localStorage.setItem('token', res.data.token);
-      setToken(res.data.token);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
-      setUser(res.data.user);
-      return { success: true };
+    try {
+      const res = await axios.post(`${API_BASE}/login`, { username, password });
+      if (res.data.success) {
+        localStorage.setItem('token', res.data.token);
+        setToken(res.data.token);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+        setUser(res.data.user);
+        return { success: true };
+      }
+      return { success: false, error: res.data.error };
+    } catch (err) {
+      return { success: false, error: err.response?.data?.error || 'Login failed' };
     }
-    return { success: false, error: res.data.error };
   };
 
   const register = async (username, password) => {
-    const res = await axios.post('/api/register', { username, password });
-    if (res.data.success) {
-      return { success: true };
+    try {
+      const res = await axios.post(`${API_BASE}/register`, { username, password });
+      if (res.data.success) {
+        return { success: true };
+      }
+      return { success: false, error: res.data.error };
+    } catch (err) {
+      return { success: false, error: err.response?.data?.error || 'Registration failed' };
     }
-    return { success: false, error: res.data.error };
   };
 
   const logout = () => {
