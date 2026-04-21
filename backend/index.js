@@ -12,9 +12,10 @@ dotenv.config();
 
 const execAsync = promisify(exec);
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware
+// ✅ Fix 1: Trust proxy (for rate limiter behind Render)
+app.set('trust proxy', 1);
+
 app.use(cors());
 app.use(express.json());
 
@@ -25,7 +26,6 @@ const limiter = rateLimit({
 });
 app.use('/api/', limiter);
 
-// MySQL Connection Pool
 let pool;
 async function initDatabase() {
   try {
@@ -45,12 +45,10 @@ async function initDatabase() {
   }
 }
 
-// Helper: verify JWT
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
   if (!token) return res.status(401).json({ success: false, error: 'Access denied' });
-
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) return res.status(403).json({ success: false, error: 'Invalid token' });
     req.user = user;
@@ -58,7 +56,6 @@ function authenticateToken(req, res, next) {
   });
 }
 
-// Prolog query helper (unchanged)
 async function queryProlog(command) {
   const prologPath = process.env.PROLOG_PATH || 'swipl';
   const knowledgePath = process.env.KNOWLEDGE_BASE_PATH || './knowledge.pl';
@@ -75,7 +72,7 @@ async function queryProlog(command) {
   }
 }
 
-// ========== AUTH ENDPOINTS ==========
+// AUTH ENDPOINTS
 app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) {
@@ -83,10 +80,7 @@ app.post('/api/register', async (req, res) => {
   }
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
-    await pool.execute(
-      'INSERT INTO users (username, password_hash) VALUES (?, ?)',
-      [username, hashedPassword]
-    );
+    await pool.execute('INSERT INTO users (username, password_hash) VALUES (?, ?)', [username, hashedPassword]);
     res.json({ success: true, message: 'User registered successfully' });
   } catch (error) {
     if (error.code === 'ER_DUP_ENTRY') {
@@ -104,14 +98,10 @@ app.post('/api/login', async (req, res) => {
   }
   try {
     const [rows] = await pool.execute('SELECT * FROM users WHERE username = ?', [username]);
-    if (rows.length === 0) {
-      return res.status(401).json({ success: false, error: 'Invalid credentials' });
-    }
+    if (rows.length === 0) return res.status(401).json({ success: false, error: 'Invalid credentials' });
     const user = rows[0];
     const valid = await bcrypt.compare(password, user.password_hash);
-    if (!valid) {
-      return res.status(401).json({ success: false, error: 'Invalid credentials' });
-    }
+    if (!valid) return res.status(401).json({ success: false, error: 'Invalid credentials' });
     const token = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRET, { expiresIn: '7d' });
     res.json({ success: true, token, user: { id: user.id, username: user.username } });
   } catch (error) {
@@ -119,7 +109,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// ========== SYMPTOMS & DIAGNOSIS (with user) ==========
 app.get('/api/symptoms', async (req, res) => {
   try {
     const output = await queryProlog('--get-symptoms');
@@ -132,7 +121,7 @@ app.get('/api/symptoms', async (req, res) => {
 
 app.post('/api/diagnose', authenticateToken, async (req, res) => {
   const { symptoms } = req.body;
-  const userId = req.user.id;
+  const userId = parseInt(req.user.id, 10);
   if (!symptoms || !Array.isArray(symptoms)) {
     return res.status(400).json({ success: false, error: 'Symptoms must be an array' });
   }
@@ -140,7 +129,6 @@ app.post('/api/diagnose', authenticateToken, async (req, res) => {
     const symptomsList = `[${symptoms.map(s => `'${s.replace(/'/g, "\\'")}'`).join(',')}]`;
     const output = await queryProlog(`--diagnose --symptoms="${symptomsList}"`);
     const diagnosis = JSON.parse(output);
-    // Store with user_id
     await pool.execute(
       'INSERT INTO diagnoses (symptoms, results, user_id) VALUES (?, ?, ?)',
       [JSON.stringify(symptoms), JSON.stringify(diagnosis), userId]
@@ -151,83 +139,43 @@ app.post('/api/diagnose', authenticateToken, async (req, res) => {
   }
 });
 
+// ✅ FIXED /history endpoint
 app.get('/api/history', authenticateToken, async (req, res) => {
-  const userId = req.user.id;
-  const limit = parseInt(req.query.limit) || 20;
+  const userId = parseInt(req.user.id, 10);
+  if (isNaN(userId)) {
+    return res.status(400).json({ success: false, error: 'Invalid user ID' });
+  }
+  let limit = parseInt(req.query.limit, 10);
+  if (isNaN(limit) || limit < 1) limit = 20;
+  if (limit > 100) limit = 100;
+
   try {
-    console.log(`Fetching history for user ${userId}`);
-    
-    // First, check if the table exists
-    const [tableCheck] = await pool.execute(`
-      SELECT COUNT(*) as count FROM information_schema.tables 
-      WHERE table_schema = DATABASE() AND table_name = 'diagnoses'
-    `);
-    if (tableCheck[0].count === 0) {
-      console.error('❌ diagnoses table does not exist!');
-      return res.status(500).json({ success: false, error: 'diagnoses table missing' });
-    }
-
-    // Check if user_id column exists
-    const [columnCheck] = await pool.execute(`
-      SELECT COUNT(*) as count FROM information_schema.columns 
-      WHERE table_schema = DATABASE() AND table_name = 'diagnoses' AND column_name = 'user_id'
-    `);
-    if (columnCheck[0].count === 0) {
-      console.error('❌ user_id column missing from diagnoses table');
-      // Try to add it automatically
-      await pool.execute('ALTER TABLE diagnoses ADD COLUMN user_id INT');
-      console.log('✅ Added user_id column');
-    }
-
     const [rows] = await pool.execute(
       'SELECT id, symptoms, results, created_at FROM diagnoses WHERE user_id = ? ORDER BY created_at DESC LIMIT ?',
       [userId, limit]
     );
-    
-    console.log(`Found ${rows.length} records`);
-
     const parsedRows = rows.map(row => {
       let symptoms = row.symptoms;
       let results = row.results;
-
       if (typeof symptoms === 'string') {
-        try {
-          symptoms = JSON.parse(symptoms);
-        } catch (e) {
-          console.warn(`Failed to parse symptoms for row ${row.id}, raw: ${symptoms}`);
-          symptoms = [];
-        }
+        try { symptoms = JSON.parse(symptoms); } catch { symptoms = []; }
       }
       if (!Array.isArray(symptoms)) symptoms = [];
-
       if (typeof results === 'string') {
-        try {
-          results = JSON.parse(results);
-        } catch (e) {
-          console.warn(`Failed to parse results for row ${row.id}, raw: ${results}`);
-          results = { diseases: [] };
-        }
+        try { results = JSON.parse(results); } catch { results = { diseases: [] }; }
       }
       if (!results || typeof results !== 'object') results = { diseases: [] };
-
       return { ...row, symptoms, results };
     });
-
     res.json({ success: true, history: parsedRows });
   } catch (error) {
-    console.error('🔥 /history endpoint CRASH:', error);
-    console.error('Stack trace:', error.stack);
-    res.status(500).json({ 
-      success: false, 
-      error: error.message,
-      sqlMessage: error.sqlMessage,  // MySQL specific
-      code: error.code 
-    });
+    console.error('History error:', error);
+    res.status(500).json({ success: false, error: error.message });
   }
 });
 
 app.get('/api/stats', authenticateToken, async (req, res) => {
-  const userId = req.user.id;
+  const userId = parseInt(req.user.id, 10);
   try {
     const [total] = await pool.execute('SELECT COUNT(*) as total FROM diagnoses WHERE user_id = ?', [userId]);
     const [today] = await pool.execute(
@@ -244,7 +192,6 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date().toISOString() });
 });
 
-// Start server
 async function startServer() {
   await initDatabase();
   app.listen(PORT, () => {
