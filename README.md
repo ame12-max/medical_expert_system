@@ -1,88 +1,80 @@
-🏥 MedExpert AI – Medical Diagnosis Expert System
-A production‑ready medical diagnosis assistant that combines Prolog’s logical inference engine with a modern React + Node.js web interface. The system uses a weighted symptom‑matching algorithm to suggest possible diseases and stores all diagnoses in a MySQL database, supporting multiple users with JWT authentication.
+# 🏥 MedExpert AI – Medical Diagnosis Expert System
 
-📋 Table of Contents
-✨ Features
+A production‑ready medical diagnosis assistant that combines **Prolog’s logical inference engine** with a modern **React + Node.js** web interface. The system uses a weighted symptom‑matching algorithm to suggest possible diseases and stores all diagnoses in a MySQL database, supporting multiple users with JWT authentication.
 
-🏗️ Tech Stack
+**Live Demo:**  
+- Frontend: [https://medical-expert-system-eight.vercel.app](https://medical-expert-system-eight.vercel.app)  
+- Backend API: [https://medical-expert-system-l4tn.onrender.com/api/health](https://medical-expert-system-l4tn.onrender.com/api/health)
 
-📁 Project Structure
+---
 
-🚀 Quick Start (Local Development)
+## ✨ Features
 
-Prerequisites
+- **Expert System** – Prolog knowledge base with 10+ diseases and weighted symptom scoring.  
+- **User Authentication** – JWT‑based login/registration, each user sees their own history.  
+- **Interactive UI** – Symptom checklists with search, categories, and bulk selection.  
+- **Confidence Scoring** – Each disease gets a percentage based on matched symptoms + critical symptoms.  
+- **Diagnosis History** – All past diagnoses are stored and viewable per user.  
+- **Production Ready** – Deployed on Render (backend + MySQL) and Vercel (frontend).  
 
-Backend Setup
+---
 
-Frontend Setup
+## 🏗️ Tech Stack
 
-MySQL Database Setup
+| Layer       | Technology                                                                 |
+|-------------|----------------------------------------------------------------------------|
+| **Frontend**| React 18 + Vite + Tailwind CSS 4                                          |
+| **Backend** | Node.js + Express + SWI‑Prolog (inference engine)                         |
+| **Database**| MySQL (with JSON support)                                                 |
+| **Auth**    | JWT + bcrypt                                                              |
+| **Deployment** | Render (backend + MySQL) + Vercel (frontend)                           |
 
-☁️ Deployment
+---
 
-Backend – Render
-
-Frontend – Vercel
-
-📖 API Documentation
-
-🧠 How the Diagnosis Works
-
-🤝 Contributing
-
-📄 License
-
-✨ Features
-Expert System – Prolog knowledge base with 10+ diseases and weighted symptom scoring.
-
-User Authentication – JWT‑based login/registration, each user sees their own history.
-
-Interactive UI – Symptom checklists with search, categories, and bulk selection.
-
-Confidence Scoring – Each disease gets a percentage based on matched symptoms + critical symptoms.
-
-Diagnosis History – All past diagnoses are stored and viewable per user.
-
-Production Ready – Deployed on Render (backend + MySQL) and Vercel (frontend).
-
-🏗️ Tech Stack
-Layer	Technology
-Frontend	React 18 + Vite + Tailwind CSS 4
-Backend	Node.js + Express + SWI‑Prolog (inference engine)
-Database	MySQL (with JSON support)
-Auth	JWT + bcrypt
-Deployment	Render (backend + MySQL) + Vercel (frontend)
-📁 Project Structure
-text
+## 📁 Project Structure
 medical-diagnosis-system/
 ├── backend/
-│   ├── knowledge.pl          # Prolog disease knowledge base
-│   ├── index.js              # Express server + API endpoints
-│   ├── package.json
-│   ├── .env                  # Environment variables (DB, JWT secret)
-│   └── Dockerfile            # For Render deployment
+│ ├── knowledge.pl # Prolog disease knowledge base
+│ ├── index.js # Express server + API endpoints
+│ ├── package.json
+│ ├── .env.example # Environment variables template
+│ └── Dockerfile # For Render deployment
 ├── frontend/
-│   ├── src/
-│   │   ├── components/       # Reusable UI components
-│   │   ├── hooks/            # Custom React hooks (useAuth)
-│   │   ├── utils/            # Helper functions
-│   │   ├── App.jsx           # Main app component
-│   │   └── index.css         # Tailwind imports
-│   ├── package.json
-│   └── vite.config.js
-└── database.sql              # MySQL schema
-🚀 Quick Start (Local Development)
-Prerequisites
-Node.js v18 or higher
+│ ├── public/
+│ ├── src/
+│ │ ├── components/
+│ │ │ ├── Auth/
+│ │ │ ├── Diagnosis/
+│ │ │ ├── History/
+│ │ │ ├── Layout/
+│ │ │ └── common/
+│ │ ├── hooks/
+│ │ │ └── useAuth.js
+│ │ ├── utils/
+│ │ │ └── symptomParser.js
+│ │ ├── App.jsx
+│ │ ├── main.jsx
+│ │ └── index.css
+│ ├── package.json
+│ └── vite.config.js
+└── database.sql # MySQL schema
 
-SWI‑Prolog – Download
+text
 
-MySQL – local or cloud instance
+---
 
-Git
+## 🚀 Quick Start (Local Development)
 
-Backend Setup
-bash
+### Prerequisites
+
+- **Node.js** v18 or higher  
+- **SWI‑Prolog** – [Download](https://www.swi-prolog.org/download/stable)  
+- **MySQL** – local or cloud instance  
+- **Git**  
+
+### Backend Setup
+
+```bash
 cd backend
 npm install
 cp .env.example .env   # create .env with your DB credentials
@@ -126,7 +118,7 @@ CREATE TABLE diagnoses (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-💡 The backend will automatically add the user_id column if missing (see ensureDatabaseSchema).
+💡 The backend automatically adds the user_id column if missing.
 
 ☁️ Deployment
 Backend – Render
@@ -150,7 +142,7 @@ Log into Vercel → Add New → Project.
 Import the repo, set Framework Preset to Vite.
 
 Add environment variable:
-VITE_API_BASE = https://your-backend.onrender.com/api
+VITE_API_BASE = https://medical-expert-system-l4tn.onrender.com/api
 
 Deploy.
 
@@ -221,7 +213,7 @@ Open a Pull Request.
 For major changes, open an issue first to discuss.
 
 📄 License
-MIT © [Your Name] – Free for academic and commercial use.
+MIT © Amare – Free for academic and commercial use.
 
 🙏 Acknowledgements
 SWI‑Prolog – inference engine
