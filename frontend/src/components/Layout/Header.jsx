@@ -1,38 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { ChangePasswordModal } from '../Auth/ChangePasswordModal';
 
 export const Header = ({ user, stats, onLogout }) => {
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handlePasswordSuccess = (msg) => {
+    setSuccessMessage(msg);
+    setTimeout(() => setSuccessMessage(''), 3000);
+  };
+
   return (
-    <header className="bg-white shadow-sm border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="flex justify-between items-center flex-wrap gap-4">
-          <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              MedExpert AI
-            </h1>
-            <p className="text-gray-600 mt-1">Welcome, {user?.username}!</p>
-          </div>
-          <div className="flex gap-4 items-center">
-            {stats && (
-              <div className="flex gap-4 text-sm">
-                <div className="bg-blue-50 rounded-lg px-4 py-2">
-                  <span className="text-gray-600">Today</span>
-                  <span className="ml-2 font-bold text-blue-600">{stats.todayDiagnoses}</span>
+    <>
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex justify-between items-center flex-wrap gap-4">
+            <div>
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                MedExpert AI
+              </h1>
+              <p className="text-gray-600 mt-1">Welcome, {user?.username}!</p>
+            </div>
+            <div className="flex gap-4 items-center">
+              {stats && (
+                <div className="flex gap-4 text-sm">
+                  <div className="bg-blue-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-600">Today</span>
+                    <span className="ml-2 font-bold text-blue-600">{stats.todayDiagnoses}</span>
+                  </div>
+                  <div className="bg-purple-50 rounded-lg px-4 py-2">
+                    <span className="text-gray-600">Total</span>
+                    <span className="ml-2 font-bold text-purple-600">{stats.totalDiagnoses}</span>
+                  </div>
                 </div>
-                <div className="bg-purple-50 rounded-lg px-4 py-2">
-                  <span className="text-gray-600">Total</span>
-                  <span className="ml-2 font-bold text-purple-600">{stats.totalDiagnoses}</span>
-                </div>
-              </div>
-            )}
-            <button
-              onClick={onLogout}
-              className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-sm font-medium transition"
-            >
-              Logout
-            </button>
+              )}
+              <button
+                onClick={() => setShowPasswordModal(true)}
+                className="bg-gray-200 hover:bg-gray-300 px-3 py-2 rounded-lg text-sm font-medium transition"
+              >
+                Change Password
+              </button>
+              <button
+                onClick={onLogout}
+                className="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-lg text-sm font-medium transition"
+              >
+                Logout
+              </button>
+            </div>
           </div>
+          {successMessage && (
+            <div className="mt-3 text-green-600 text-sm font-medium">
+              {successMessage}
+            </div>
+          )}
         </div>
-      </div>
-    </header>
+      </header>
+      <ChangePasswordModal
+        isOpen={showPasswordModal}
+        onClose={() => setShowPasswordModal(false)}
+        onSuccess={handlePasswordSuccess}
+      />
+    </>
   );
 };

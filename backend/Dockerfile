@@ -1,6 +1,5 @@
 FROM node:20-slim
 
-# Install SWI-Prolog
 RUN apt-get update && apt-get install -y swi-prolog && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
@@ -12,4 +11,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]

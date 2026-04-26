@@ -1,0 +1,692 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@10.9.2
+2 info using node@v22.15.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:D:\Development\Web\medical_expert_system\frontend\.npmrc
+5 silly config load:file:C:\Users\MR AME\.npmrc
+6 silly config load:file:C:\Users\MR AME\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm uninstall dom-to-image-more jspdf html2canvas
+8 verbose argv "uninstall" "dom-to-image-more" "jspdf" "html2canvas"
+9 verbose logfile logs-max:10 dir:D:\Development\Web\medical_expert_system\frontend\npm-cache\_logs\2026-04-26T14_45_16_307Z-
+10 verbose logfile D:\Development\Web\medical_expert_system\frontend\npm-cache\_logs\2026-04-26T14_45_16_307Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly reify mark retired [
+15 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@babel\\runtime'
+15 silly reify ]
+16 silly reify mark retired [
+16 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\pako'
+16 silly reify ]
+17 silly reify mark retired [
+17 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\raf'
+17 silly reify ]
+18 silly reify mark retired [
+18 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\trusted-types'
+18 silly reify ]
+19 silly reify mark retired [
+19 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\base64-arraybuffer'
+19 silly reify ]
+20 silly reify mark retired [
+20 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\canvg'
+20 silly reify ]
+21 silly reify mark retired [
+21 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\core-js'
+21 silly reify ]
+22 silly reify mark retired [
+22 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\css-line-break'
+22 silly reify ]
+23 silly reify mark retired [
+23 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\dom-to-image-more'
+23 silly reify ]
+24 silly reify mark retired [
+24 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\dompurify'
+24 silly reify ]
+25 silly reify mark retired [
+25 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\fast-png'
+25 silly reify ]
+26 silly reify mark retired [
+26 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\fflate'
+26 silly reify ]
+27 silly reify mark retired [
+27 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\html2canvas'
+27 silly reify ]
+28 silly reify mark retired [
+28 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\iobuffer'
+28 silly reify ]
+29 silly reify mark retired [
+29 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\jspdf'
+29 silly reify ]
+30 silly reify mark retired [
+30 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\pako'
+30 silly reify ]
+31 silly reify mark retired [
+31 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\performance-now'
+31 silly reify ]
+32 silly reify mark retired [
+32 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\raf'
+32 silly reify ]
+33 silly reify mark retired [
+33 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\regenerator-runtime'
+33 silly reify ]
+34 silly reify mark retired [
+34 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\rgbcolor'
+34 silly reify ]
+35 silly reify mark retired [
+35 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\stackblur-canvas'
+35 silly reify ]
+36 silly reify mark retired [
+36 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\svg-pathdata'
+36 silly reify ]
+37 silly reify mark retired [
+37 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\text-segmentation'
+37 silly reify ]
+38 silly reify mark retired [
+38 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\utrie'
+38 silly reify ]
+39 silly reify moves {
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@babel\\runtime': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@babel\\.runtime-gQgEuFg8',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\pako': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\.pako-a8OTol8M',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\raf': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\.raf-Wawm3sZb',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\trusted-types': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@types\\.trusted-types-kBdaE4ZE',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\base64-arraybuffer': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.base64-arraybuffer-aTxOqHt6',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\canvg': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.canvg-ZMcqMbGw',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\core-js': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.core-js-NJZx6tpw',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\css-line-break': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.css-line-break-q6ysYUso',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\dom-to-image-more': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.dom-to-image-more-ZQadGVnl',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\dompurify': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.dompurify-nRG4xqU7',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\fast-png': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.fast-png-Bn5xvGXx',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\fflate': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.fflate-UcSurqBK',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\html2canvas': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.html2canvas-SvO69IiY',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\iobuffer': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.iobuffer-atEjYTAX',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\jspdf': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.jspdf-t17jPohv',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\pako': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.pako-M8BegKMi',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\performance-now': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.performance-now-lG81Z1So',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\raf': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.raf-tUpYjwcN',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\regenerator-runtime': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.regenerator-runtime-gwQZVK63',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\rgbcolor': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.rgbcolor-tsA30coY',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\stackblur-canvas': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.stackblur-canvas-dZwV4Edb',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\svg-pathdata': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.svg-pathdata-WzaAcB5h',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\text-segmentation': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.text-segmentation-wQMdTdls',
+39 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\utrie': 'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\.utrie-0apa8ggd'
+39 silly reify }
+40 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-wasm32-wasi
+41 silly reify mark deleted [
+41 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-wasm32-wasi'
+41 silly reify ]
+42 silly audit bulk request {
+42 silly audit   '@babel/code-frame': [ '7.29.0' ],
+42 silly audit   '@babel/compat-data': [ '7.29.0' ],
+42 silly audit   '@babel/core': [ '7.29.0' ],
+42 silly audit   '@babel/generator': [ '7.29.1' ],
+42 silly audit   '@babel/helper-compilation-targets': [ '7.28.6' ],
+42 silly audit   '@babel/helper-globals': [ '7.28.0' ],
+42 silly audit   '@babel/helper-module-imports': [ '7.28.6' ],
+42 silly audit   '@babel/helper-module-transforms': [ '7.28.6' ],
+42 silly audit   '@babel/helper-plugin-utils': [ '7.28.6' ],
+42 silly audit   '@babel/helper-string-parser': [ '7.27.1' ],
+42 silly audit   '@babel/helper-validator-identifier': [ '7.28.5' ],
+42 silly audit   '@babel/helper-validator-option': [ '7.27.1' ],
+42 silly audit   '@babel/helpers': [ '7.29.2' ],
+42 silly audit   '@babel/parser': [ '7.29.2' ],
+42 silly audit   '@babel/plugin-transform-react-jsx-self': [ '7.27.1' ],
+42 silly audit   '@babel/plugin-transform-react-jsx-source': [ '7.27.1' ],
+42 silly audit   '@babel/template': [ '7.28.6' ],
+42 silly audit   '@babel/traverse': [ '7.29.0' ],
+42 silly audit   '@babel/types': [ '7.29.0' ],
+42 silly audit   '@esbuild/aix-ppc64': [ '0.21.5' ],
+42 silly audit   '@esbuild/android-arm': [ '0.21.5' ],
+42 silly audit   '@esbuild/android-arm64': [ '0.21.5' ],
+42 silly audit   '@esbuild/android-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/darwin-arm64': [ '0.21.5' ],
+42 silly audit   '@esbuild/darwin-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/freebsd-arm64': [ '0.21.5' ],
+42 silly audit   '@esbuild/freebsd-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-arm': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-arm64': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-ia32': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-loong64': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-mips64el': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-ppc64': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-riscv64': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-s390x': [ '0.21.5' ],
+42 silly audit   '@esbuild/linux-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/netbsd-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/openbsd-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/sunos-x64': [ '0.21.5' ],
+42 silly audit   '@esbuild/win32-arm64': [ '0.21.5' ],
+42 silly audit   '@esbuild/win32-ia32': [ '0.21.5' ],
+42 silly audit   '@esbuild/win32-x64': [ '0.21.5' ],
+42 silly audit   '@jridgewell/gen-mapping': [ '0.3.13' ],
+42 silly audit   '@jridgewell/remapping': [ '2.3.5' ],
+42 silly audit   '@jridgewell/resolve-uri': [ '3.1.2' ],
+42 silly audit   '@jridgewell/sourcemap-codec': [ '1.5.5' ],
+42 silly audit   '@jridgewell/trace-mapping': [ '0.3.31' ],
+42 silly audit   '@rolldown/pluginutils': [ '1.0.0-beta.27' ],
+42 silly audit   '@rollup/rollup-android-arm-eabi': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-android-arm64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-darwin-arm64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-darwin-x64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-freebsd-arm64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-freebsd-x64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-arm-gnueabihf': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-arm-musleabihf': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-arm64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-arm64-musl': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-loong64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-loong64-musl': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-ppc64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-ppc64-musl': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-riscv64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-riscv64-musl': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-s390x-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-x64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-linux-x64-musl': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-openbsd-x64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-openharmony-arm64': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-win32-arm64-msvc': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-win32-ia32-msvc': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-win32-x64-gnu': [ '4.60.2' ],
+42 silly audit   '@rollup/rollup-win32-x64-msvc': [ '4.60.2' ],
+42 silly audit   '@tailwindcss/node': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-android-arm64': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-darwin-arm64': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-darwin-x64': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-freebsd-x64': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-linux-arm-gnueabihf': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-linux-arm64-gnu': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-linux-arm64-musl': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-linux-x64-gnu': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-linux-x64-musl': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-win32-arm64-msvc': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/oxide-win32-x64-msvc': [ '4.2.3' ],
+42 silly audit   '@tailwindcss/vite': [ '4.2.3' ],
+42 silly audit   '@types/babel__core': [ '7.20.5' ],
+42 silly audit   '@types/babel__generator': [ '7.27.0' ],
+42 silly audit   '@types/babel__template': [ '7.4.4' ],
+42 silly audit   '@types/babel__traverse': [ '7.28.0' ],
+42 silly audit   '@types/estree': [ '1.0.8' ],
+42 silly audit   '@types/prop-types': [ '15.7.15' ],
+42 silly audit   '@types/react': [ '18.3.28' ],
+42 silly audit   '@types/react-dom': [ '18.3.7' ],
+42 silly audit   '@vitejs/plugin-react': [ '4.7.0' ],
+42 silly audit   asynckit: [ '0.4.0' ],
+42 silly audit   axios: [ '1.15.1' ],
+42 silly audit   'baseline-browser-mapping': [ '2.10.20' ],
+42 silly audit   browserslist: [ '4.28.2' ],
+42 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+42 silly audit   'caniuse-lite': [ '1.0.30001788' ],
+42 silly audit   'combined-stream': [ '1.0.8' ],
+42 silly audit   'convert-source-map': [ '2.0.0' ],
+42 silly audit   cookie: [ '1.1.1' ],
+42 silly audit   csstype: [ '3.2.3' ],
+42 silly audit   debug: [ '4.4.3' ],
+42 silly audit   'delayed-stream': [ '1.0.0' ],
+42 silly audit   'detect-libc': [ '2.1.2' ],
+42 silly audit   'dunder-proto': [ '1.0.1' ],
+42 silly audit   'electron-to-chromium': [ '1.5.340' ],
+42 silly audit   'enhanced-resolve': [ '5.20.1' ],
+42 silly audit   'es-define-property': [ '1.0.1' ],
+42 silly audit   'es-errors': [ '1.3.0' ],
+42 silly audit   'es-object-atoms': [ '1.1.1' ],
+42 silly audit   'es-set-tostringtag': [ '2.1.0' ],
+42 silly audit   esbuild: [ '0.21.5' ],
+42 silly audit   escalade: [ '3.2.0' ],
+42 silly audit   'follow-redirects': [ '1.16.0' ],
+42 silly audit   'form-data': [ '4.0.5' ],
+42 silly audit   fsevents: [ '2.3.3' ],
+42 silly audit   'function-bind': [ '1.1.2' ],
+42 silly audit   gensync: [ '1.0.0-beta.2' ],
+42 silly audit   'get-intrinsic': [ '1.3.0' ],
+42 silly audit   'get-proto': [ '1.0.1' ],
+42 silly audit   gopd: [ '1.2.0' ],
+42 silly audit   'graceful-fs': [ '4.2.11' ],
+42 silly audit   'has-symbols': [ '1.1.0' ],
+42 silly audit   'has-tostringtag': [ '1.0.2' ],
+42 silly audit   hasown: [ '2.0.3' ],
+42 silly audit   jiti: [ '2.6.1' ],
+42 silly audit   'js-tokens': [ '4.0.0' ],
+42 silly audit   jsesc: [ '3.1.0' ],
+42 silly audit   json5: [ '2.2.3' ],
+42 silly audit   'jwt-decode': [ '4.0.0' ],
+42 silly audit   lightningcss: [ '1.32.0' ],
+42 silly audit   'lightningcss-android-arm64': [ '1.32.0' ],
+42 silly audit   'lightningcss-darwin-arm64': [ '1.32.0' ],
+42 silly audit   'lightningcss-darwin-x64': [ '1.32.0' ],
+42 silly audit   'lightningcss-freebsd-x64': [ '1.32.0' ],
+42 silly audit   'lightningcss-linux-arm-gnueabihf': [ '1.32.0' ],
+42 silly audit   'lightningcss-linux-arm64-gnu': [ '1.32.0' ],
+42 silly audit   'lightningcss-linux-arm64-musl': [ '1.32.0' ],
+42 silly audit   'lightningcss-linux-x64-gnu': [ '1.32.0' ],
+42 silly audit   'lightningcss-linux-x64-musl': [ '1.32.0' ],
+42 silly audit   'lightningcss-win32-arm64-msvc': [ '1.32.0' ],
+42 silly audit   'lightningcss-win32-x64-msvc': [ '1.32.0' ],
+42 silly audit   'loose-envify': [ '1.4.0' ],
+42 silly audit   'lru-cache': [ '5.1.1' ],
+42 silly audit   'magic-string': [ '0.30.21' ],
+42 silly audit   'math-intrinsics': [ '1.1.0' ],
+42 silly audit   'mime-db': [ '1.52.0' ],
+42 silly audit   'mime-types': [ '2.1.35' ],
+42 silly audit   ms: [ '2.1.3' ],
+42 silly audit   nanoid: [ '3.3.11' ],
+42 silly audit   'node-releases': [ '2.0.37' ],
+42 silly audit   picocolors: [ '1.1.1' ],
+42 silly audit   postcss: [ '8.5.10' ],
+42 silly audit   'proxy-from-env': [ '2.1.0' ],
+42 silly audit   react: [ '18.3.1' ],
+42 silly audit   'react-dom': [ '18.3.1' ],
+42 silly audit   'react-refresh': [ '0.17.0' ],
+42 silly audit   'react-router': [ '7.14.2' ],
+42 silly audit   'react-router-dom': [ '7.14.2' ],
+42 silly audit   rollup: [ '4.60.2' ],
+42 silly audit   scheduler: [ '0.23.2' ],
+42 silly audit   semver: [ '6.3.1' ],
+42 silly audit   'set-cookie-parser': [ '2.7.2' ],
+42 silly audit   'source-map-js': [ '1.2.1' ],
+42 silly audit   tailwindcss: [ '4.2.3' ],
+42 silly audit   tapable: [ '2.3.2' ],
+42 silly audit   'update-browserslist-db': [ '1.2.3' ],
+42 silly audit   vite: [ '5.4.21' ],
+42 silly audit   yallist: [ '3.1.1' ],
+42 silly audit   '@tailwindcss/oxide-wasm32-wasi': [ '4.2.3' ]
+42 silly audit }
+43 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-win32-arm64-msvc
+44 silly reify mark deleted [
+44 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-win32-arm64-msvc'
+44 silly reify ]
+45 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-linux-x64-musl
+46 silly reify mark deleted [
+46 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-linux-x64-musl'
+46 silly reify ]
+47 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-linux-x64-gnu
+48 silly reify mark deleted [
+48 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-linux-x64-gnu'
+48 silly reify ]
+49 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-linux-arm64-musl
+50 silly reify mark deleted [
+50 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-linux-arm64-musl'
+50 silly reify ]
+51 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-linux-arm64-gnu
+52 silly reify mark deleted [
+52 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-linux-arm64-gnu'
+52 silly reify ]
+53 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-linux-arm-gnueabihf
+54 silly reify mark deleted [
+54 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-linux-arm-gnueabihf'
+54 silly reify ]
+55 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-freebsd-x64
+56 silly reify mark deleted [
+56 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-freebsd-x64'
+56 silly reify ]
+57 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-darwin-x64
+58 silly reify mark deleted [
+58 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-darwin-x64'
+58 silly reify ]
+59 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-darwin-arm64
+60 silly reify mark deleted [
+60 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-darwin-arm64'
+60 silly reify ]
+61 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\lightningcss-android-arm64
+62 silly reify mark deleted [
+62 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\lightningcss-android-arm64'
+62 silly reify ]
+63 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\fsevents
+64 silly reify mark deleted [
+64 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\fsevents'
+64 silly reify ]
+65 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-win32-arm64-msvc
+66 silly reify mark deleted [
+66 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-win32-arm64-msvc'
+66 silly reify ]
+67 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-linux-x64-musl
+68 silly reify mark deleted [
+68 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-linux-x64-musl'
+68 silly reify ]
+69 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-linux-x64-gnu
+70 silly reify mark deleted [
+70 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-linux-x64-gnu'
+70 silly reify ]
+71 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-linux-arm64-musl
+72 silly reify mark deleted [
+72 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm64-musl'
+72 silly reify ]
+73 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-linux-arm64-gnu
+74 silly reify mark deleted [
+74 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm64-gnu'
+74 silly reify ]
+75 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-linux-arm-gnueabihf
+76 silly reify mark deleted [
+76 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-linux-arm-gnueabihf'
+76 silly reify ]
+77 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-freebsd-x64
+78 silly reify mark deleted [
+78 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-freebsd-x64'
+78 silly reify ]
+79 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-darwin-x64
+80 silly reify mark deleted [
+80 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-darwin-x64'
+80 silly reify ]
+81 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-darwin-arm64
+82 silly reify mark deleted [
+82 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-darwin-arm64'
+82 silly reify ]
+83 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@tailwindcss\oxide-android-arm64
+84 silly reify mark deleted [
+84 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@tailwindcss\\oxide-android-arm64'
+84 silly reify ]
+85 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-win32-ia32-msvc
+86 silly reify mark deleted [
+86 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-win32-ia32-msvc'
+86 silly reify ]
+87 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-win32-arm64-msvc
+88 silly reify mark deleted [
+88 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-win32-arm64-msvc'
+88 silly reify ]
+89 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-openharmony-arm64
+90 silly reify mark deleted [
+90 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-openharmony-arm64'
+90 silly reify ]
+91 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-openbsd-x64
+92 silly reify mark deleted [
+92 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-openbsd-x64'
+92 silly reify ]
+93 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-x64-musl
+94 silly reify mark deleted [
+94 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-x64-musl'
+94 silly reify ]
+95 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-x64-gnu
+96 silly reify mark deleted [
+96 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-x64-gnu'
+96 silly reify ]
+97 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-s390x-gnu
+98 silly reify mark deleted [
+98 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-s390x-gnu'
+98 silly reify ]
+99 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-riscv64-musl
+100 silly reify mark deleted [
+100 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-musl'
+100 silly reify ]
+101 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-riscv64-gnu
+102 silly reify mark deleted [
+102 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-riscv64-gnu'
+102 silly reify ]
+103 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-ppc64-musl
+104 silly reify mark deleted [
+104 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-musl'
+104 silly reify ]
+105 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-ppc64-gnu
+106 silly reify mark deleted [
+106 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-ppc64-gnu'
+106 silly reify ]
+107 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-loong64-musl
+108 silly reify mark deleted [
+108 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-musl'
+108 silly reify ]
+109 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-loong64-gnu
+110 silly reify mark deleted [
+110 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-loong64-gnu'
+110 silly reify ]
+111 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-arm64-musl
+112 silly reify mark deleted [
+112 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-musl'
+112 silly reify ]
+113 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-arm64-gnu
+114 silly reify mark deleted [
+114 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-arm64-gnu'
+114 silly reify ]
+115 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-arm-musleabihf
+116 silly reify mark deleted [
+116 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-arm-musleabihf'
+116 silly reify ]
+117 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-linux-arm-gnueabihf
+118 silly reify mark deleted [
+118 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-linux-arm-gnueabihf'
+118 silly reify ]
+119 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-freebsd-x64
+120 silly reify mark deleted [
+120 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-freebsd-x64'
+120 silly reify ]
+121 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-freebsd-arm64
+122 silly reify mark deleted [
+122 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-freebsd-arm64'
+122 silly reify ]
+123 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-darwin-x64
+124 silly reify mark deleted [
+124 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-darwin-x64'
+124 silly reify ]
+125 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-darwin-arm64
+126 silly reify mark deleted [
+126 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-darwin-arm64'
+126 silly reify ]
+127 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-android-arm64
+128 silly reify mark deleted [
+128 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-android-arm64'
+128 silly reify ]
+129 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@rollup\rollup-android-arm-eabi
+130 silly reify mark deleted [
+130 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@rollup\\rollup-android-arm-eabi'
+130 silly reify ]
+131 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\win32-ia32
+132 silly reify mark deleted [
+132 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\win32-ia32'
+132 silly reify ]
+133 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\win32-arm64
+134 silly reify mark deleted [
+134 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\win32-arm64'
+134 silly reify ]
+135 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\sunos-x64
+136 silly reify mark deleted [
+136 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\sunos-x64'
+136 silly reify ]
+137 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\openbsd-x64
+138 silly reify mark deleted [
+138 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\openbsd-x64'
+138 silly reify ]
+139 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\netbsd-x64
+140 silly reify mark deleted [
+140 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\netbsd-x64'
+140 silly reify ]
+141 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-x64
+142 silly reify mark deleted [
+142 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-x64'
+142 silly reify ]
+143 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-s390x
+144 silly reify mark deleted [
+144 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-s390x'
+144 silly reify ]
+145 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-riscv64
+146 silly reify mark deleted [
+146 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-riscv64'
+146 silly reify ]
+147 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-ppc64
+148 silly reify mark deleted [
+148 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-ppc64'
+148 silly reify ]
+149 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-mips64el
+150 silly reify mark deleted [
+150 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-mips64el'
+150 silly reify ]
+151 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-loong64
+152 silly reify mark deleted [
+152 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-loong64'
+152 silly reify ]
+153 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-ia32
+154 silly reify mark deleted [
+154 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-ia32'
+154 silly reify ]
+155 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-arm64
+156 silly reify mark deleted [
+156 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-arm64'
+156 silly reify ]
+157 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\linux-arm
+158 silly reify mark deleted [
+158 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\linux-arm'
+158 silly reify ]
+159 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\freebsd-x64
+160 silly reify mark deleted [
+160 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\freebsd-x64'
+160 silly reify ]
+161 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\freebsd-arm64
+162 silly reify mark deleted [
+162 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\freebsd-arm64'
+162 silly reify ]
+163 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\darwin-x64
+164 silly reify mark deleted [
+164 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\darwin-x64'
+164 silly reify ]
+165 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\darwin-arm64
+166 silly reify mark deleted [
+166 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\darwin-arm64'
+166 silly reify ]
+167 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\android-x64
+168 silly reify mark deleted [
+168 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\android-x64'
+168 silly reify ]
+169 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\android-arm64
+170 silly reify mark deleted [
+170 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\android-arm64'
+170 silly reify ]
+171 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\android-arm
+172 silly reify mark deleted [
+172 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\android-arm'
+172 silly reify ]
+173 verbose reify failed optional dependency D:\Development\Web\medical_expert_system\frontend\node_modules\@esbuild\aix-ppc64
+174 silly reify mark deleted [
+174 silly reify   'D:\\Development\\Web\\medical_expert_system\\frontend\\node_modules\\@esbuild\\aix-ppc64'
+174 silly reify ]
+175 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 6955ms
+176 silly audit report {
+176 silly audit report   esbuild: [
+176 silly audit report     {
+176 silly audit report       id: 1102341,
+176 silly audit report       url: 'https://github.com/advisories/GHSA-67mh-4wv8-2f99',
+176 silly audit report       title: 'esbuild enables any website to send any requests to the development server and read the response',
+176 silly audit report       severity: 'moderate',
+176 silly audit report       vulnerable_versions: '<=0.24.2',
+176 silly audit report       cwe: [Array],
+176 silly audit report       cvss: [Object]
+176 silly audit report     }
+176 silly audit report   ],
+176 silly audit report   vite: [
+176 silly audit report     {
+176 silly audit report       id: 1116229,
+176 silly audit report       url: 'https://github.com/advisories/GHSA-4w7w-66w2-5vf9',
+176 silly audit report       title: 'Vite Vulnerable to Path Traversal in Optimized Deps `.map` Handling',
+176 silly audit report       severity: 'moderate',
+176 silly audit report       vulnerable_versions: '<=6.4.1',
+176 silly audit report       cwe: [Array],
+176 silly audit report       cvss: [Object]
+176 silly audit report     }
+176 silly audit report   ]
+176 silly audit report }
+177 silly packumentCache corgi:https://registry.npmjs.org/esbuild cache-miss
+178 silly packumentCache corgi:https://registry.npmjs.org/vite cache-miss
+179 http fetch GET 200 https://registry.npmjs.org/vite 317ms (cache revalidated)
+180 silly packumentCache corgi:https://registry.npmjs.org/vite set size:2234939 disposed:false
+181 http fetch GET 200 https://registry.npmjs.org/esbuild 1237ms (cache revalidated)
+182 silly packumentCache corgi:https://registry.npmjs.org/esbuild set size:885757 disposed:false
+183 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2fvite cache-miss
+184 silly packumentCache corgi:https://registry.npmjs.org/@vitejs%2fplugin-react cache-miss
+185 http fetch GET 200 https://registry.npmjs.org/@tailwindcss%2fvite 722ms (cache revalidated)
+186 silly packumentCache corgi:https://registry.npmjs.org/@tailwindcss%2fvite set size:787354 disposed:false
+187 http fetch GET 200 https://registry.npmjs.org/@vitejs%2fplugin-react 1171ms (cache revalidated)
+188 silly packumentCache corgi:https://registry.npmjs.org/@vitejs%2fplugin-react set size:112470 disposed:false
+189 silly ADD
+190 silly ADD
+191 silly ADD
+192 silly ADD
+193 silly ADD
+194 silly ADD
+195 silly ADD
+196 silly ADD
+197 silly ADD
+198 silly ADD
+199 silly ADD
+200 silly ADD
+201 silly ADD
+202 silly ADD
+203 silly ADD
+204 silly ADD
+205 silly ADD
+206 silly ADD
+207 silly ADD
+208 silly ADD
+209 silly ADD
+210 silly ADD
+211 silly ADD
+212 silly ADD
+213 silly ADD
+214 silly ADD
+215 silly ADD
+216 silly ADD
+217 silly ADD
+218 silly ADD
+219 silly ADD
+220 silly ADD
+221 silly ADD
+222 silly ADD
+223 silly ADD
+224 silly ADD
+225 silly ADD
+226 silly ADD
+227 silly ADD
+228 silly ADD
+229 silly ADD
+230 silly ADD
+231 silly ADD
+232 silly ADD
+233 silly ADD
+234 silly ADD
+235 silly ADD
+236 silly ADD
+237 silly ADD
+238 silly ADD
+239 silly ADD
+240 silly ADD
+241 silly ADD
+242 silly ADD
+243 silly ADD
+244 silly ADD
+245 silly ADD
+246 silly ADD
+247 silly ADD
+248 silly ADD
+249 silly ADD
+250 silly ADD
+251 silly ADD
+252 silly ADD
+253 silly ADD
+254 silly ADD
+255 silly ADD
+256 silly REMOVE node_modules/utrie
+257 silly REMOVE node_modules/text-segmentation
+258 silly REMOVE node_modules/svg-pathdata
+259 silly REMOVE node_modules/stackblur-canvas
+260 silly REMOVE node_modules/rgbcolor
+261 silly REMOVE node_modules/regenerator-runtime
+262 silly REMOVE node_modules/raf
+263 silly REMOVE node_modules/performance-now
+264 silly REMOVE node_modules/pako
+265 silly REMOVE node_modules/jspdf
+266 silly REMOVE node_modules/iobuffer
+267 silly REMOVE node_modules/html2canvas
+268 silly REMOVE node_modules/fflate
+269 silly REMOVE node_modules/fast-png
+270 silly REMOVE node_modules/dompurify
+271 silly REMOVE node_modules/dom-to-image-more
+272 silly REMOVE node_modules/css-line-break
+273 silly REMOVE node_modules/core-js
+274 silly REMOVE node_modules/canvg
+275 silly REMOVE node_modules/base64-arraybuffer
+276 silly REMOVE node_modules/@types/trusted-types
+277 silly REMOVE node_modules/@types/raf
+278 silly REMOVE node_modules/@types/pako
+279 silly REMOVE node_modules/@babel/runtime
+280 verbose cwd D:\Development\Web\medical_expert_system\frontend
+281 verbose os Windows_NT 10.0.26200
+282 verbose node v22.15.0
+283 verbose npm  v10.9.2
+284 verbose exit 0
+285 info ok

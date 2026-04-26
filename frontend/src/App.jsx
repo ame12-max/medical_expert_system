@@ -1,71 +1,145 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { useAuth } from './hooks/useAuth';
-import { Header } from './components/Layout/Header';
-import { Footer } from './components/Layout/Footer';
-import { TabNavigation } from './components/common/TabNavigation';
-import { SymptomSelector } from './components/Diagnosis/SymptomSelector';
-import { DiagnosisResults } from './components/Diagnosis/DiagnosisResults';
-import { HistoryList } from './components/History/HistoryList';
-import { LoginForm } from './components/Auth/LoginForm';
-import { RegisterForm } from './components/Auth/RegisterForm';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { BrowserRouter, Routes, Route, Link, Navigate } from "react-router-dom";
+import { useAuth } from "./hooks/useAuth";
+import { Header } from "./components/Layout/Header";
+import { Footer } from "./components/Layout/Footer";
+import { Dashboard } from "./pages/Dashboard";
+import { HistoryPage } from "./pages/HistoryPage";
+import { DiagnosisDetails } from "./pages/DiagnosisDetails";
+import { TreatmentDetails } from "./pages/TreatmentDetails";
+import { Guide } from './pages/Guide';
+import { About } from './pages/About';
+import { LoginForm } from "./components/Auth/LoginForm";
+import { RegisterForm } from "./components/Auth/RegisterForm";
 
-const API_BASE = import.meta.env.VITE_API_BASE || '/api';
+const API_BASE = import.meta.env.VITE_API_BASE || "/api";
+
+function AuthenticatedRoutes({ user, logout, stats, ...props }) {
+  return (
+    <>
+      <Header user={user} stats={stats} onLogout={logout} />
+      <nav className="bg-white shadow-sm border-b">
+        <div className="max-w-7xl mx-auto px-4 flex gap-6 py-3">
+          <Link to="/" className="text-gray-600 hover:text-blue-600">
+            Diagnose
+          </Link>
+          <Link to="/history" className="text-gray-600 hover:text-blue-600">
+            History
+          </Link>
+          <Link to="/guide" className="text-gray-600 hover:text-blue-600">
+            Guide
+          </Link>
+          <Link to="/about" className="text-gray-600 hover:text-blue-600">
+            About
+          </Link>
+        </div>
+      </nav>
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <Routes>
+          <Route path="/" element={<Dashboard {...props} />} />
+          <Route path="/history" element={<HistoryPage />} />
+          <Route path="/diagnosis-details" element={<DiagnosisDetails />} />
+          <Route
+            path="/treatments/:diseaseName"
+            element={<TreatmentDetails />}
+          />
+          <Route path="/guide" element={<Guide />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+      <Footer />
+    </>
+  );
+}
+
 function App() {
-  const { user, login, register, logout } = useAuth();
-  const [authMode, setAuthMode] = useState('login');
-  const [authError, setAuthError] = useState('');
+const { user, login, register, logout, isLoading: authLoading } = useAuth();  const [authMode, setAuthMode] = useState("login");
+  const [authError, setAuthError] = useState("");
 
   const [symptoms, setSymptoms] = useState([]);
   const [selectedSymptoms, setSelectedSymptoms] = useState(new Set());
   const [diagnosis, setDiagnosis] = useState(null);
-  const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState(null);
-  const [activeTab, setActiveTab] = useState('diagnose');
   const [symptomGroups, setSymptomGroups] = useState({});
 
   useEffect(() => {
     if (user) {
       fetchSymptoms();
-      fetchHistory();
       fetchStats();
     }
   }, [user]);
 
   useEffect(() => {
     if (symptoms.length > 0) {
-      // Group symptoms (same logic as before)
+      // Grouping logic (same as before)
       const groups = {
-        '🤒 Fever & Whole Body': [],
-        '🧠 Head & Neurological': [],
-        '🫁 Chest & Breathing': [],
-        '👃 Nose & Throat': [],
-        '🤢 Digestive': [],
-        '🦴 Muscles & Joints': [],
-        '🩸 Skin & Rash': [],
-        '⚡ Other': []
+        "🤒 Fever & Whole Body": [],
+        "🧠 Head & Neurological": [],
+        "🫁 Chest & Breathing": [],
+        "👃 Nose & Throat": [],
+        "🤢 Digestive": [],
+        "🦴 Muscles & Joints": [],
+        "🩸 Skin & Rash": [],
+        "⚡ Other": [],
       };
-      symptoms.forEach(s => {
+      symptoms.forEach((s) => {
         const lower = s.toLowerCase();
-        if (lower.includes('fever') || lower.includes('chills') || lower.includes('sweating') || lower.includes('fatigue')) 
-          groups['🤒 Fever & Whole Body'].push(s);
-        else if (lower.includes('headache') || lower.includes('confusion') || lower.includes('stiff neck') || lower.includes('sensitivity to light'))
-          groups['🧠 Head & Neurological'].push(s);
-        else if (lower.includes('cough') || lower.includes('breath') || lower.includes('chest') || lower.includes('phlegm'))
-          groups['🫁 Chest & Breathing'].push(s);
-        else if (lower.includes('nose') || lower.includes('throat') || lower.includes('sore throat') || lower.includes('runny') || lower.includes('sneezing'))
-          groups['👃 Nose & Throat'].push(s);
-        else if (lower.includes('nausea') || lower.includes('vomit') || lower.includes('abdominal') || lower.includes('diarrhea') || lower.includes('constipation'))
-          groups['🤢 Digestive'].push(s);
-        else if (lower.includes('muscle') || lower.includes('joint') || lower.includes('body aches'))
-          groups['🦴 Muscles & Joints'].push(s);
-        else if (lower.includes('rash') || lower.includes('rose spots') || lower.includes('red spots'))
-          groups['🩸 Skin & Rash'].push(s);
-        else
-          groups['⚡ Other'].push(s);
+        if (
+          lower.includes("fever") ||
+          lower.includes("chills") ||
+          lower.includes("sweating") ||
+          lower.includes("fatigue")
+        )
+          groups["🤒 Fever & Whole Body"].push(s);
+        else if (
+          lower.includes("headache") ||
+          lower.includes("confusion") ||
+          lower.includes("stiff neck") ||
+          lower.includes("sensitivity to light")
+        )
+          groups["🧠 Head & Neurological"].push(s);
+        else if (
+          lower.includes("cough") ||
+          lower.includes("breath") ||
+          lower.includes("chest") ||
+          lower.includes("phlegm")
+        )
+          groups["🫁 Chest & Breathing"].push(s);
+        else if (
+          lower.includes("nose") ||
+          lower.includes("throat") ||
+          lower.includes("sore throat") ||
+          lower.includes("runny") ||
+          lower.includes("sneezing")
+        )
+          groups["👃 Nose & Throat"].push(s);
+        else if (
+          lower.includes("nausea") ||
+          lower.includes("vomit") ||
+          lower.includes("abdominal") ||
+          lower.includes("diarrhea") ||
+          lower.includes("constipation")
+        )
+          groups["🤢 Digestive"].push(s);
+        else if (
+          lower.includes("muscle") ||
+          lower.includes("joint") ||
+          lower.includes("body aches")
+        )
+          groups["🦴 Muscles & Joints"].push(s);
+        else if (
+          lower.includes("rash") ||
+          lower.includes("rose spots") ||
+          lower.includes("red spots")
+        )
+          groups["🩸 Skin & Rash"].push(s);
+        else groups["⚡ Other"].push(s);
       });
-      Object.keys(groups).forEach(key => { if (groups[key].length === 0) delete groups[key]; });
+      Object.keys(groups).forEach((key) => {
+        if (groups[key].length === 0) delete groups[key];
+      });
       setSymptomGroups(groups);
     }
   }, [symptoms]);
@@ -75,16 +149,7 @@ function App() {
       const res = await axios.get(`${API_BASE}/symptoms`);
       if (res.data.success) setSymptoms(res.data.symptoms);
     } catch (error) {
-      console.error('Error fetching symptoms:', error);
-    }
-  };
-
-  const fetchHistory = async () => {
-    try {
-      const res = await axios.get(`${API_BASE}/history`);
-      if (res.data.success) setHistory(res.data.history);
-    } catch (error) {
-      console.error('Error fetching history:', error);
+      console.error("Error fetching symptoms:", error);
     }
   };
 
@@ -93,7 +158,7 @@ function App() {
       const res = await axios.get(`${API_BASE}/stats`);
       if (res.data.success) setStats(res.data.stats);
     } catch (error) {
-      console.error('Error fetching stats:', error);
+      console.error("Error fetching stats:", error);
     }
   };
 
@@ -106,7 +171,7 @@ function App() {
 
   const selectAll = (symptomList) => {
     const newSelected = new Set(selectedSymptoms);
-    symptomList.forEach(s => newSelected.add(s));
+    symptomList.forEach((s) => newSelected.add(s));
     setSelectedSymptoms(newSelected);
   };
 
@@ -114,20 +179,22 @@ function App() {
 
   const handleDiagnose = async () => {
     if (selectedSymptoms.size === 0) {
-      alert('Please select at least one symptom');
+      alert("Please select at least one symptom");
       return;
     }
     setLoading(true);
+    setDiagnosis(null);
     try {
-      const res = await axios.post(`${API_BASE}/diagnose`, { symptoms: Array.from(selectedSymptoms) });
+      const res = await axios.post(`${API_BASE}/diagnose`, {
+        symptoms: Array.from(selectedSymptoms),
+      });
       if (res.data.success) {
         setDiagnosis(res.data.diagnosis);
-        fetchHistory();
         fetchStats();
       }
     } catch (error) {
-      console.error('Diagnosis error:', error);
-      alert('Error performing diagnosis');
+      console.error("Diagnosis error:", error);
+      alert("Error performing diagnosis");
     } finally {
       setLoading(false);
     }
@@ -141,8 +208,8 @@ function App() {
   const handleRegister = async (username, password) => {
     const result = await register(username, password);
     if (result.success) {
-      setAuthMode('login');
-      setAuthError('');
+      setAuthMode("login");
+      setAuthError("");
     } else {
       setAuthError(result.error);
     }
@@ -157,68 +224,65 @@ function App() {
           </h1>
           <div className="flex gap-4 mb-6">
             <button
-              onClick={() => { setAuthMode('login'); setAuthError(''); }}
-              className={`flex-1 py-2 rounded-lg font-medium ${authMode === 'login' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}
+              onClick={() => {
+                setAuthMode("login");
+                setAuthError("");
+              }}
+              className={`flex-1 py-2 rounded-lg font-medium ${authMode === "login" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"}`}
             >
               Login
             </button>
             <button
-              onClick={() => { setAuthMode('register'); setAuthError(''); }}
-              className={`flex-1 py-2 rounded-lg font-medium ${authMode === 'register' ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}
+              onClick={() => {
+                setAuthMode("register");
+                setAuthError("");
+              }}
+              className={`flex-1 py-2 rounded-lg font-medium ${authMode === "register" ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-600"}`}
             >
               Register
             </button>
           </div>
-          {authError && <div className="mb-4 p-2 bg-red-100 text-red-700 rounded text-sm">{authError}</div>}
-          {authMode === 'login' ? (
-            <LoginForm onLogin={handleLogin} error={authError} clearError={() => setAuthError('')} />
+          {authError && (
+            <div className="mb-4 p-2 bg-red-100 text-red-700 rounded text-sm">
+              {authError}
+            </div>
+          )}
+          {authMode === "login" ? (
+            <LoginForm
+              onLogin={handleLogin}
+              error={authError}
+              clearError={() => setAuthError("")}
+            />
           ) : (
-            <RegisterForm onRegister={handleRegister} error={authError} clearError={() => setAuthError('')} />
+            <RegisterForm
+              onRegister={handleRegister}
+              error={authError}
+              clearError={() => setAuthError("")}
+            />
           )}
         </div>
       </div>
     );
   }
 
-  const tabs = [
-    { id: 'diagnose', label: 'Diagnose Symptoms', icon: '🔍' },
-    { id: 'history', label: 'History', icon: '📋' }
-  ];
-
+  // Wrap everything with BrowserRouter inside the authenticated part
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      <Header user={user} stats={stats} onLogout={logout} />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
-        <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} tabs={tabs} />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {activeTab === 'diagnose' && (
-          <div className="grid lg:grid-cols-2 gap-8">
-            <SymptomSelector
-              symptoms={symptoms}
-              symptomGroups={symptomGroups}
-              selectedSymptoms={selectedSymptoms}
-              onToggleSymptom={toggleSymptom}
-              onSelectAll={selectAll}
-              onClearAll={clearAll}
-              onDiagnose={handleDiagnose}
-              loading={loading}
-            />
-            <DiagnosisResults diagnosis={diagnosis} />
-          </div>
-        )}
-        {activeTab === 'history' && (
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Recent Diagnoses</h2>
-            <HistoryList history={history} />
-          </div>
-        )}
-      </div>
-
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <AuthenticatedRoutes
+        user={user}
+        logout={logout}
+        stats={stats}
+        symptoms={symptoms}
+        symptomGroups={symptomGroups}
+        selectedSymptoms={selectedSymptoms}
+        onToggleSymptom={toggleSymptom}
+        onSelectAll={selectAll}
+        onClearAll={clearAll}
+        onDiagnose={handleDiagnose}
+        loading={loading}
+        diagnosis={diagnosis}
+      />
+    </BrowserRouter>
   );
 }
 

@@ -7,6 +7,7 @@ const API_BASE = import.meta.env.VITE_API_BASE || '/api';
 export const useAuth = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (token) {
@@ -16,7 +17,7 @@ export const useAuth = () => {
           setUser({ id: decoded.id, username: decoded.username });
           axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         } else {
-          logout();
+          logout(); // token expired
         }
       } catch {
         logout();
@@ -25,6 +26,7 @@ export const useAuth = () => {
   }, [token]);
 
   const login = async (username, password) => {
+    setIsLoading(true);
     try {
       const res = await axios.post(`${API_BASE}/login`, { username, password });
       if (res.data.success) {
@@ -37,10 +39,13 @@ export const useAuth = () => {
       return { success: false, error: res.data.error };
     } catch (err) {
       return { success: false, error: err.response?.data?.error || 'Login failed' };
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const register = async (username, password) => {
+    setIsLoading(true);
     try {
       const res = await axios.post(`${API_BASE}/register`, { username, password });
       if (res.data.success) {
@@ -49,6 +54,8 @@ export const useAuth = () => {
       return { success: false, error: res.data.error };
     } catch (err) {
       return { success: false, error: err.response?.data?.error || 'Registration failed' };
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -59,5 +66,5 @@ export const useAuth = () => {
     setUser(null);
   };
 
-  return { user, login, register, logout };
+  return { user, login, register, logout, isLoading };
 };

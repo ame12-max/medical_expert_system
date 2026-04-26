@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { parseSymptoms, parseResults } from '../../utils/symptomParser';
 
-export const HistoryList = ({ history }) => {
+export const HistoryList = ({ history, onDelete }) => {
   if (history.length === 0) {
     return (
       <div className="text-center py-12 text-gray-400">
@@ -19,13 +20,25 @@ export const HistoryList = ({ history }) => {
       {history.map((record) => {
         const symptoms = parseSymptoms(record.symptoms);
         const results = parseResults(record.results);
+        const topDisease = results.diseases?.[0] || null;
+
         return (
           <div key={record.id} className="border rounded-lg p-4 hover:bg-gray-50 transition">
-            <div className="flex justify-between items-start mb-3">
+            <div className="flex justify-between items-start mb-3 flex-wrap gap-2">
               <span className="text-sm text-gray-500">
                 {new Date(record.created_at).toLocaleString()}
               </span>
-              <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">ID: {record.id}</span>
+              <div className="flex gap-2">
+                <span className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded">ID: {record.id}</span>
+                {onDelete && (
+                  <button
+                    onClick={() => onDelete(record.id)}
+                    className="text-red-600 hover:text-red-800 text-xs bg-red-50 px-2 py-1 rounded transition"
+                  >
+                    Delete
+                  </button>
+                )}
+              </div>
             </div>
             <div className="grid md:grid-cols-2 gap-4">
               <div>
@@ -40,20 +53,27 @@ export const HistoryList = ({ history }) => {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-700 mb-2">Top Diagnosis:</p>
-                {results.diseases && results.diseases.length > 0 ? (
-                  <div className="space-y-1">
-                    {results.diseases.slice(0, 2).map((d, idx) => (
-                      <div key={idx} className="flex justify-between items-center text-sm">
-                        <span className="capitalize">{d.name.replace(/_/g, ' ')}</span>
-                        <span className="font-medium">{Math.round(d.confidence)}%</span>
-                      </div>
-                    ))}
+                {topDisease ? (
+                  <div className="flex justify-between items-center text-sm">
+                    <span className="capitalize">{topDisease.name.replace(/_/g, ' ')}</span>
+                    <span className="font-medium">{Math.round(topDisease.confidence)}%</span>
                   </div>
                 ) : (
                   <p className="text-sm text-gray-500">No diagnosis found</p>
                 )}
               </div>
             </div>
+            {results.diseases && results.diseases.length > 0 && (
+              <div className="mt-3 text-right">
+                <Link
+                  to="/diagnosis-details"
+                  state={{ diagnosis: results }}
+                  className="text-xs text-purple-600 hover:text-purple-800"
+                >
+                  View full report →
+                </Link>
+              </div>
+            )}
           </div>
         );
       })}
